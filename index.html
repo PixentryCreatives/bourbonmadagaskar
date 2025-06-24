@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanille de Madagascar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #f6fdf9, #e3f4e8);
+      color: #013e20;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      padding: 10px 0;
+    }
+
+    .im-logo {
+      width: 180px;
+    }
+
+    .menu {
+      background: #013e20;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      max-width: 1000px;
+      padding: 20px 0;
+    }
+
+    .menu ul li a {
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .menu ul li a:hover {
+      color: #62b545;
+    }
+
+    .burger {
+      display: none;
+      font-size: 30px;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu {
+        flex-direction: column;
+      }
+
+      .menu ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: linear-gradient(to bottom, #4CAF50, #013e20);
+      }
+
+      .menu.show ul {
+        display: flex;
+      }
+
+      .menu ul li {
+        padding: 12px 0;
+        text-align: center;
+      }
+
+      .burger {
+        display: block;
+        background: #013e20;
+        width: 100%;
+      }
+    }
+
+    .content {
+      padding: 60px 20px;
+      text-align: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .content h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #013e20;
+    }
+
+    .grades {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    .grade-card {
+      flex: 1 1 280px;
+      max-width: 300px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .grade-card h3 {
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+
+   .slider {
+  position: relative;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 800px; /* Ajout d'une largeur max */
+  height: 420px;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  width: 100%; /* Important */
+  transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Changé de 'contain' à 'cover' pour mieux remplir */
+}
+
+    .nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 10px;
+    }
+
+    .nav span {
+      cursor: pointer;
+      font-size: 2rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .nav span:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .cta-button {
+      margin-top: 40px;
+      padding: 16px 32px;
+      font-size: 18px;
+      background: linear-gradient(to right, #62b545, #388e3c);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    .cta-button:hover {
+      background: #2e7d32;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="logo">
+    <a href="#"><img class="im-logo" src="pebge.png" alt="logo" /></a>
+  </div>
+
+  <div class="burger" onclick="toggleMenu()">☰</div>
+
+  <div class="menu" id="menu">
+    <ul>
+      <li><a href="https://www.pebge.eu/">Start</a></li>
+      <li><a href="https://www.pebge.eu/leistungen">Leistungen</a></li>
+      <li><a href="https://www.pebge.eu/galerie">Galerie</a></li>
+      <li><a href="https://www.pebge.eu/aktuelles">Aktuelles</a></li>
+      <li><a href="https://www.pebge.eu/tatigkeiten">Tätigkeiten</a></li>
+      <li><a href="https://www.pebge.eu/madagaskar">Madagaskar</a></li>
+      <li><a href="https://www.pebge.eu/kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h1>Entdecken Sie den Reichtum unserer Bourbon-Vanille aus Madagaskar.</h1>
+
+    <div class="grades">
+      <div class="grade-card">
+        <h3>Grade A – Gourmet</h3>
+        <p>Lange Schoten von 16 bis 20 cm, geschmeidig und glänzend. Vanillingehalt zwischen 1,6 % und 2,4 %. Intensives Aroma, ideal für Patisserie und den Verkauf als ganze Schote.</p>
+      </div>
+      <div class="grade-card">
+        <h3>Grade B – Standard</h3>
+        <p>Schoten von 12 bis 15 cm, etwas trockener. Vanillingehalt zwischen 1,4 % und 2,0 %. Perfekt für die Aromagewinnung und industrielle Verwendung.</p>
+      </div>
+      <div class="grade-card">
+        <h3>Grade C – Kurze Schoten</h3>
+        <p>Kurze Schoten von 8 bis 12 cm, manchmal gebrochen oder gespalten. Vanillingehalt zwischen 1,0 % und 1,6 %. Verwendet für Pulver und einfache Aromen.</p>
+      </div>
+    </div>
+
+    <div class="slider">
+      <div class="slides" id="slide-container">
+        <img class="img" src="vanille/vanilla-stick-768x414.jpg" alt="Vanille 1" />
+        <img class="img" src="vanille/18.jpg" />
+        <img class="img" src="vanille/2.jpg" />
+        <!-- <img class="img" src="vanille/botillon-vanille-bio-madagascar-norohy.png" alt="Vanille 2" /> -->
+        <img class="img" src="vanille/meilleur_vanille_625262c8-d196-400b-b4e8-3e009e90f6ad.webp" alt="Vanille 3" />
+        <!-- <img class="img" src="vanille/vanille-bourbon-de-madagascar-nnf-gousses-de-14-16cm.jpg" alt="Vanille 4" /> -->
+        <!-- <img class="img" src="vanille/vanille-madagascar-nomie-400x400-1.jpg" alt="Vanille 5" /> -->
+        <img class="img" src="vanille/9.jpg" />
+        <img class="img" src="vanille/10.jpg" />
+        <img class="img" src="vanille/3.jpg" />
+        <img class="img" src="vanille/1.jpg" />
+        <img class="img" src="vanille/4.jpg" />
+        <img class="img" src="vanille/5.jpg" />
+      </div>
+      <div class="nav">
+        <span onclick="prevSlide()">‹</span>
+        <span onclick="nextSlide()">›</span>
+      </div>
+    </div>
+
+    <button class="cta-button" onclick="location.href='https://www.pebge.eu/kontakt'">Jetzt bestellen</button>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+
+    const container = document.getElementById("slide-container");
+    const images = container.querySelectorAll(".img");
+    const total = images.length;
+    let index = 0;
+    let interval;
+
+    // Initialisation du slider
+    function initSlider() {
+      // Ajustement des dimensions
+      container.style.width = `${total * 100}%`;
+      images.forEach(img => {
+        img.style.width = `${100 / total}%`;
+        img.style.flexShrink = "0"; // Empêche le rétrécissement
+      });
+      
+      // Démarrer l'intervalle
+      startInterval();
+    }
+
+    function updateSlide() {
+      container.style.transform = `translateX(-${index * (100 / total)}%)`;
+    }
+
+    function nextSlide() {
+      index = (index + 1) % total;
+      updateSlide();
+      resetInterval();
+    }
+
+    function prevSlide() {
+      index = (index - 1 + total) % total;
+      updateSlide();
+      resetInterval();
+    }
+
+    function startInterval() {
+      interval = setInterval(nextSlide, 3000);
+    }
+
+    function resetInterval() {
+      clearInterval(interval);
+      startInterval();
+    }
+
+    // Initialisation au chargement
+    document.addEventListener('DOMContentLoaded', initSlider);
+</script>
+
+</body>
+
+</html>
